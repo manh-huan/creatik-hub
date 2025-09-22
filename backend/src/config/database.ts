@@ -21,23 +21,14 @@ const testConnection = async () => {
   try {
     const client = await pool.connect();
     const result = await client.query('SELECT NOW() as current_time');
-    console.log('✅ PostgreSQL Connected:', result.rows[0].current_time);
+    console.log('PostgreSQL Connected:', result.rows[0].current_time);
     client.release(); // Important: release the client back to pool
   } catch (error) {
-    console.error('❌ PostgreSQL Connection Failed:', error);
+    console.error('PostgreSQL Connection Failed:', error);
     process.exit(1); // Exit if database unavailable
   }
 };
 
 testConnection();
-
-// Test the connection
-pool.on('connect', () => {
-  console.log('✅ Connected to PostgreSQL database');
-});
-
-pool.on('error', (err) => {
-  console.error('❌ PostgreSQL connection error:', err);
-});
 
 export default pool;
