@@ -81,7 +81,7 @@ export default function LoginForm() {
 
           <div className="text-center">
             <a href="/auth/signup" className="text-indigo-600 hover:text-indigo-500">
-              Don't have an account? Sign up
+              Don&apos;t have an account? Sign up
             </a>
           </div>
         </form>

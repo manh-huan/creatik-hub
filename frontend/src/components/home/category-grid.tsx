@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import Image from "next/image"
 
 const categories = [
   {
@@ -81,10 +82,11 @@ export function CategoryGrid() {
             >
               <CardContent className="p-0">
                 <div className={`relative h-48 bg-gradient-to-br ${category.gradient} overflow-hidden`}>
-                  <img
+                  <Image
                     src={category.image || "/placeholder.svg"}
                     alt={category.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
                     <Badge variant="secondary" className="bg-background/80 text-foreground">
