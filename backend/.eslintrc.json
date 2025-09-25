@@ -13,21 +13,8 @@
   "rules": {
     "no-unused-vars": "warn",
     "no-console": "off",
-    "prefer-const": "error"
-  },
-  "overrides": [
-    {
-      "files": ["*.ts", "*.tsx"],
-      "parser": "@typescript-eslint/parser",
-      "plugins": ["@typescript-eslint"],
-      "extends": [
-        "eslint:recommended",
-        "@typescript-eslint/recommended"
-      ],
-      "rules": {
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": "warn"
-      }
-    }
-  ]
+    "prefer-const": "error",
+    "no-var": "error",
+    "no-undef": "off"
+  }
 }
