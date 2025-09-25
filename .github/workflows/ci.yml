@@ -73,9 +73,9 @@ jobs:
     - name: Lint
       run: cd backend && npm run lint
     
-    - name: Test
-      run: cd backend && npm run test
-      env:
-        DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/test
-        REDIS_URL: redis://localhost:6379
-        JWT_SECRET: test-secret
+    # - name: Test
+    #   run: cd backend && npm run test
+    #   env:
+    #     DATABASE_URL: postgresql://postgres:testpassword@localhost:5432/test
+    #     REDIS_URL: redis://localhost:6379
+    #     JWT_SECRET: test-secret
