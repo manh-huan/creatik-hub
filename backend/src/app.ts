@@ -24,7 +24,6 @@ app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// Auth routes - FIXED: Use the router correctly
 app.use('/api/auth', authRoutes);
 
 // Error handling

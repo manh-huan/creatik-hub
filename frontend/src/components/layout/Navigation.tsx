@@ -67,7 +67,9 @@ export function Navigation() {
 
             {/* CTA Button */}
             <div className="flex items-center">
-              <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">Get Started</Button>
+              <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                  <Link href="/auth/signup">Get Started</Link>
+              </Button>
             </div>
           </div>
         </div>

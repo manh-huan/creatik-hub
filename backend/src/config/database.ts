@@ -4,9 +4,6 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '../.env' }); 
 dotenv.config();
 
-console.log('🔍 Environment check:');
-console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
-console.log('NODE_ENV:', process.env.NODE_ENV);
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
