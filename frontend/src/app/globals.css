@@ -3,7 +3,7 @@
 
 :root {
   /* Updated to dark theme design tokens for Faceless AI Video */
-  --background: #1f2937; /* Dark background for the entire page */
+  --background: #111827; /* Dark background for the entire page */
   --foreground: #ffffff; /* Main text color */
   --card: #374151; /* Card background color */
   --card-foreground: #f8fafc; /* Text color for cards */
