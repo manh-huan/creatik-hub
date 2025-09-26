@@ -1,6 +1,6 @@
 import pool from '../config/database';
 import { User, CreateUserData, LoginData } from '../models/User';
-import { hashPassword, comparePassword } from '../utils/auth';
+import { hashPassword, comparePassword, sanitizeUserForLogging } from '../utils/auth';
 
 export class UserService {
   static async createUser(userData: CreateUserData): Promise<User> {
@@ -25,7 +25,9 @@ export class UserService {
       const result = await pool.query(query, [email, name, passwordHash]);
       const user = result.rows[0];
       
-      console.log('User created:', { id: user.id, email: user.email, name: user.name });
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('User created:', sanitizeUserForLogging(user));
+      }
       
       return user;
     } catch (error) {
@@ -39,12 +41,16 @@ export class UserService {
     try {
       // Get a client from the pool
       client = await pool.connect();
-      console.log('Database client acquired from pool');
-      
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('Database client acquired from pool');
+      }
+
       const query = 'SELECT * FROM users WHERE email = $1';
       const result = await client.query(query, [email]);
-      
-      console.log(`Query executed, found ${result.rows.length} users`);
+
+      if (process.env.NODE_ENV !== 'production') {
+        console.log(`Query executed, found ${result.rows.length} users`);
+      }
       return result.rows[0] || null;
       
     } catch (error) {
@@ -54,7 +60,9 @@ export class UserService {
       // Always release the client back to the pool
       if (client) {
         client.release();
-        console.log('✅ Database client released back to pool');
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('✅ Database client released back to pool');
+        }
       }
     }
   }
@@ -79,17 +87,23 @@ export class UserService {
       const user = result.rows[0];
 
       if (!user) {
-        console.log('User not found:', email);
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('User not found:', email);
+        }
         return null;
       }
 
       const isValidPassword = await comparePassword(password, user.password_hash);
       if (!isValidPassword) {
-        console.log('Invalid password for:', email);
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('Invalid password for:', email);
+        }
         return null;
       }
 
-      console.log('Login successful for:', email);
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('Login successful for:', email);
+      }
 
       const { password_hash, ...userWithoutPassword } = user;
       return userWithoutPassword;

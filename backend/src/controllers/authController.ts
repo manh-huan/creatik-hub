@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { UserService } from '../services/userService';
-import { generateToken } from '../utils/auth';
+import { generateToken, validatePassword, validateEmail } from '../utils/auth';
 
 export interface AuthRequest extends Request {
   user?: any;
@@ -12,21 +12,23 @@ export const register = async (req: Request, res: Response) => {
 
     // Validation
     if (!email || !name || !password) {
-      return res.status(400).json({ 
-        error: 'Email, name, and password are required' 
+      return res.status(400).json({
+        error: 'Email, name, and password are required'
       });
     }
 
-    if (password.length < 6) {
-      return res.status(400).json({ 
-        error: 'Password must be at least 6 characters long' 
-      });
-    }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
+    // Enhanced email validation
+    if (!validateEmail(email)) {
       return res.status(400).json({ error: 'Invalid email format' });
+    }
+
+    // Enhanced password validation
+    const passwordValidation = validatePassword(password);
+    if (!passwordValidation.isValid) {
+      return res.status(400).json({
+        error: 'Password validation failed',
+        details: passwordValidation.errors
+      });
     }
 
     // Create user
