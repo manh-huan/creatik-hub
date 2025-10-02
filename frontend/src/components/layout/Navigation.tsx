@@ -57,10 +57,9 @@ export function Navigation() {
                   Resources
                 </a>
                 <a
-                  href="#"
+                  href="/auth/login"
                   className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
-                >
-                  Login
+                >Login
                 </a>
               </div>
             </div>

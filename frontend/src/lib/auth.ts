@@ -3,30 +3,28 @@ import apiClient from './api';
 export interface User {
   id: string;
   email: string;
-  name: string;
+  firstName: string;
+  lastName: string;
   createdAt: string;
 }
 
 export interface AuthResponse {
   user: User;
-  token: string;
   message: string;
 }
 
+export interface RegisterData {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+}
+
 export class AuthService {
-  static getToken(): string | null {
-    if (typeof window === 'undefined') return null;
-    return localStorage.getItem('auth_token');
-  }
+ 
 
-  static setToken(token: string): void {
+  static removeUser(): void {
     if (typeof window === 'undefined') return;
-    localStorage.setItem('auth_token', token);
-  }
-
-  static removeToken(): void {
-    if (typeof window === 'undefined') return;
-    localStorage.removeItem('auth_token');
     localStorage.removeItem('user_data');
   }
 
@@ -41,35 +39,41 @@ export class AuthService {
     return userData ? JSON.parse(userData) : null;
   }
 
-  static async register(email: string, name: string, password: string): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse>('/api/auth/register', {
+  static async register(email: string, firstName: string, lastName: string, password: string): Promise<AuthResponse> {
+    const response = await apiClient.post<AuthResponse>('/api/v1/auth/register', {
       email,
-      name,
+      firstName,
+      lastName,
       password
     });
 
-    const { user, token } = response.data;
-    this.setToken(token);
+    const { user } = response.data;
     this.setUser(user);
 
     return response.data;
   }
 
   static async login(email: string, password: string): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse>('/api/auth/login', {
+    const response = await apiClient.post<AuthResponse>('/api/v1/auth/login', {
       email,
       password
     });
 
-    const { user, token } = response.data;
-    this.setToken(token);
+    const { user } = response.data;
     this.setUser(user);
 
     return response.data;
   }
 
   static async logout(): Promise<void> {
-    this.removeToken();
+    // Call logout endpoint to clear HttpOnly cookie
+    try {
+      await apiClient.post('/api/v1/auth/logout');
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+
+    this.removeUser();
     // Redirect to home page
     if (typeof window !== 'undefined') {
       window.location.href = '/';
@@ -77,13 +81,30 @@ export class AuthService {
   }
 
   static async getProfile(): Promise<User> {
-    const response = await apiClient.get<{ user: User }>('/api/auth/profile');
-    const { user } = response.data;
-    this.setUser(user);
-    return user;
+    try {
+      const response = await apiClient.get<{ user: User }>('/api/v1/auth/profile');
+      const { user } = response.data;
+
+      // Update localStorage with fresh user data
+      this.setUser(user);
+
+      if (process.env.NODE_ENV !== 'production') {
+        console.log('Profile fetched and updated in localStorage');
+      }
+
+      return user;
+    } catch (error: any) {
+      if (error.response?.status === 401) {
+        this.removeUser();
+        if (process.env.NODE_ENV !== 'production') {
+          console.log('Cleared stale localStorage due to 401');
+        }
+      }
+      throw error;
+    }
   }
 
   static isAuthenticated(): boolean {
-    return !!this.getToken();
+    return !!this.getUser();
   }
 }

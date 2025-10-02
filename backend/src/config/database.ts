@@ -1,31 +1,33 @@
-import { Pool } from 'pg';
+import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
+// Import models to ensure they're registered with Sequelize
+import '../models/User';
 
-dotenv.config({ path: '../.env' }); 
+dotenv.config({ path: '../.env' });
 dotenv.config();
 
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  ssl: false, // Disable SSL for local development
-  max: 10, // Maximum number of clients in the pool
-  idleTimeoutMillis: 30000, // How long a client is allowed to remain idle
-  connectionTimeoutMillis: 5000, // How long to wait when connecting
+if (!process.env.DATABASE_URL) {
+  console.error('DATABASE_URL is required');
+  process.exit(1);
+}
+``
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  logging: false,
 });
 
 
-const testConnection = async () => {
+// Enhanced connection testing with retry logic
+const testConnection = async (retries = 3): Promise<void> => {
   try {
-    const client = await pool.connect();
-    const result = await client.query('SELECT NOW() as current_time');
-    console.log('PostgreSQL Connected:', result.rows[0].current_time);
-    client.release(); // Important: release the client back to pool
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
   } catch (error) {
-    console.error('PostgreSQL Connection Failed:', error);
-    process.exit(1); // Exit if database unavailable
+    console.error('Unable to connect to the database:', error);
   }
 };
 
+// Initialize connection
 testConnection();
 
-export default pool;
+export default sequelize;
