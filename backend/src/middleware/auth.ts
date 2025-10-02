@@ -8,8 +8,9 @@ export interface AuthRequest extends Request {
 
 export const authenticateToken = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+
+
+    const token = req.cookies['auth_token']; // Get token from cookies
 
     if (!token) {
       return res.status(401).json({ error: 'Access token required' });
@@ -32,8 +33,7 @@ export const authenticateToken = async (req: AuthRequest, res: Response, next: N
 // Optional middleware for routes that don't require auth
 export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFunction) => {
   try {
-    const authHeader = req.headers['authorization'];
-    const token = authHeader && authHeader.split(' ')[1];
+    const token = req.cookies['auth_token'];
 
     if (token) {
       const decoded = verifyToken(token);

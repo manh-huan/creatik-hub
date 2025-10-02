@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, getProfile } from '../controllers/authController';
+import { register, login, logout, getProfile } from '../controllers/authController';
 import { authenticateToken } from '../middleware/auth';
 
 const router = Router();
@@ -7,6 +7,7 @@ const router = Router();
 // Public routes
 router.post('/register', register);
 router.post('/login', login);
+router.post('/logout', logout);
 
 // Protected routes
 router.get('/profile', authenticateToken, getProfile);

@@ -86,6 +86,8 @@ export function CategoryGrid() {
                     src={category.image || "/placeholder.svg"}
                     alt={category.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    priority={index < 4}
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute top-3 right-3">
