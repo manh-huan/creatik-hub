@@ -1,8 +1,14 @@
-
-import Link from 'next/link'
+'use client';
+import Link from 'next/Link'
 import { Button } from '../ui/button'
+//import { useRouter } from 'next/navigation'
 
 export function Navigation() {
+  //const router = useRouter();
+  //const handleLogin = () => {
+  //  router.push('/auth/login');
+  //};
+
   return (
     <>
       {/* Promotional Banner */}
@@ -22,7 +28,7 @@ export function Navigation() {
               <div className="flex-shrink-0 flex items-center">
                  {/*  <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center mr-3">
                     <svg className="w-5 h-5 text-primary-foreground" fill="currentColor" viewBox="0 0 24 24">
-                      <path d="" />
+                      <path d=" />
                     </svg>
                   </div> */}
                 <span className="text-xl font-bold text-foreground">Faceless AI Video</span>
@@ -32,36 +38,40 @@ export function Navigation() {
             {/* Navigation Links */}
             <div className="hidden md:block">
               <div className="ml-10 flex items-baseline space-x-8">
-                <a
-                  href="#"
+                <Link
+                  href="/"
                   className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors"
                 >
                   Home
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/features"
                   className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
                 >
                   Features
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/pricing"
                   className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
                 >
                   Pricing
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/resources"
                   className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
                 >
                   Resources
-                </a>
-                <a
-                  href="#"
+                </Link>
+                <Link
+                  href="/auth/login"
+                //   onClick={(e) => {
+                //   e.preventDefault(); // Prevent default anchor behavior
+                //   handleLogin();
+                // }}
                   className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
                 >
                   Login
-                </a>
+                </Link>
               </div>
             </div>
 
