@@ -1,21 +1,16 @@
+
 {
-  "env": {
-    "node": true,
-    "es2022": true
-  },
-  "extends": [
-    "eslint:recommended"
-  ],
-  "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "ecmaVersion": "latest",
-    "sourceType": "module"
-  },
-  "rules": {
-    "no-unused-vars": "off",
-    "no-console": "off",
-    "prefer-const": "error",
-    "no-var": "error",
-    "no-undef": "off"
-  }
+    "root": true,
+    "parserOptions": {
+         "ecmaVersion": 12,
+         "sourceType": "module"
+    },
+    "extends": ["eslint:recommended", "prettier"],
+    "env": { 
+         "es2021": true,
+         "node": true
+    },
+    "rules": {
+         "no-console": "error"
+    }
 }
