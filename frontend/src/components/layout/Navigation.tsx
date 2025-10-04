@@ -57,7 +57,7 @@ export function Navigation() {
                   Resources
                 </a>
                 <a
-                  href="/auth/login"
+                  href="/login"
                   className="text-muted-foreground hover:text-foreground px-3 py-2 text-sm font-medium transition-colors"
                 >Login
                 </a>
@@ -67,7 +67,7 @@ export function Navigation() {
             {/* CTA Button */}
             <div className="flex items-center">
               <Button asChild className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                  <Link href="/auth/signup">Get Started</Link>
+                  <Link href="/signup">Get Started</Link>
               </Button>
             </div>
           </div>
