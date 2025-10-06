@@ -57,7 +57,8 @@ export default function DashboardPage() {
               <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div>
                   <dt className="text-sm font-medium text-gray-500">Name</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd> {// Initial 'name' does not exist on type 'User'}
+                  {/* For now, we dont have user names, so just show email */}
+                  <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd> 
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-gray-500">Email</dt>
