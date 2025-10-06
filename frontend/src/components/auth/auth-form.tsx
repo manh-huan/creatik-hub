@@ -40,7 +40,7 @@ export default function AuthForm({ text }: { text: any}) {
                 </p>
               </div>
               <div className="flex flex-col gap-2">
-                <button className="rounded-lg border h-10 bg-blue-50 hover:bg-blue-100">
+                <button className="cursor-pointer rounded-lg border h-10 bg-blue-50 hover:bg-blue-100">
                   <div className="flex items-center justify-center">
                     <Image
                       src="/images/google-icon.svg"
@@ -52,7 +52,7 @@ export default function AuthForm({ text }: { text: any}) {
                     <span>{text.authGoogle}</span>
                   </div>
                 </button>
-                <button className="rounded-lg border h-10 bg-blue-50 hover:bg-blue-100">
+                <button className="cursor-pointer rounded-lg border h-10 bg-blue-50 hover:bg-blue-100">
                   <div className="flex items-center justify-center">
                     <Image
                       src="/images/apple-icon.svg"
@@ -64,7 +64,7 @@ export default function AuthForm({ text }: { text: any}) {
                     <span>{text.authApple}</span>
                   </div>
                 </button>
-                <button className="rounded-lg border h-10 bg-blue-50 hover:bg-blue-100">
+                <button className="cursor-pointer rounded-lg border h-10 bg-blue-50 hover:bg-blue-100">
                   <div className="flex items-center justify-center">
                     <Image
                       src="/images/facebook-icon.svg"
@@ -78,10 +78,10 @@ export default function AuthForm({ text }: { text: any}) {
                 </button>
               </div>
 
-              <div className="flex items-center my-2">
-                <hr className="h-px bg-base-100 w-full" />
-                <p className="text-gray-400">OR</p>
-                <hr className="h-px bg-base-100 w-full" />
+              <div className="flex items-center my-2 gap-2">
+                <hr className="w-full" />
+                <p className="text-gray-400 ">OR</p>
+                <hr className="w-full" />
               </div>
 
               {/* Only show this text in signup page */}
@@ -90,21 +90,21 @@ export default function AuthForm({ text }: { text: any}) {
                 We recommend using your work email.
               </p>
               )}
-              <form onSubmit={handleSubmit}>
-                <div className="mt-4 w">
+              <form onSubmit={handleSubmit} className="mt-4 flex flex-col w-full">
+                <div className="flex w-full">
                   <Input
                     id="email"
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-transparent border-gray-500 placeholder:text-gray-500 focus:border-blue-500"
-                    placeholder="you@example.com"
+                    className="w-full bg-transparent border-gray-500 placeholder:text-gray-400 focus:border-blue-500"
+                    placeholder="Ex: creatikhub@gmail.com"
                     required
                   />
                 </div>
                 <button
                   type="submit"
-                  className="mt-4 w-full h-10 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 border rounded-lg hover:border-[var(--primary)]"
+                  className="cursor-pointer mt-4 w-full h-10 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 border rounded-lg hover:border-[var(--primary)]"
                   disabled={isLoading}
                 >
                   <span>{text.authWithEmail}</span>
