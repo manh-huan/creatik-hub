@@ -18,7 +18,8 @@ export default function AuthForm({ text }: { text: any}) {
     setIsLoading(true);
 
     try {
-      await login(email, password);
+      // No more password for now
+      //await login(email, password);
       router.push('/dashboard');
     } catch (error) {
       // Error is handled by useAuth hook
