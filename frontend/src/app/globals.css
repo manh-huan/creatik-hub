@@ -20,6 +20,7 @@
   --destructive: #be123c; /* Error messages or destructive actions */
   --destructive-foreground: #ffffff; /* Text color for destructive actions */
   --border: #374151; /* Border color for cards and sections */
+  --btn-border: #ec4899; /* Border color for buttons */
   --input: #ffffff; /* Input fields background */
   --ring: #6366f1; /* Focus ring color for interactive elements */
   --chart-1: #4f46e5; /* Chart color 1 */
@@ -36,6 +37,13 @@
   --sidebar-accent-foreground: #ffffff; /* Sidebar accent text color */
   --sidebar-border: #475569; /* Sidebar border color */
   --sidebar-ring: #6366f1; /* Sidebar focus ring color */
+}
+
+button {
+  border: 1px solid var(--btn-border); /* Use the --border variable for the border color */
+  border-radius: var(--radius); /* Optional: Use the --radius variable for rounded corners */
+  padding: 0.5rem 1rem; /* Add some padding for better appearance */
+  background-color: transparent; /* Optional: Make the background transparent */
 }
 
 .dark {

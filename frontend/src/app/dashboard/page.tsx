@@ -35,7 +35,7 @@ export default function DashboardPage() {
               <h1 className="text-xl font-semibold">Text-to-Video Dashboard</h1>∏
             </div>
             <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Welcome, {user?.name}!</span>
+              <span className="text-gray-700">Welcome, {user?.email}!</span>
               <button
                 onClick={logout}
                 className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
@@ -57,7 +57,8 @@ export default function DashboardPage() {
               <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div>
                   <dt className="text-sm font-medium text-gray-500">Name</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{user?.name}</dd>
+                  {/* For now, we dont have user names, so just show email */}
+                  <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd> 
                 </div>
                 <div>
                   <dt className="text-sm font-medium text-gray-500">Email</dt>
