@@ -9,7 +9,9 @@ export default function SignupPage() {
     authGoogle: 'Sign up with Google',
     authApple: 'Sign up with Apple',
     authFacebook: 'Sign up with Facebook',
-    showEmailRecommendation: true
+    showEmailRecommendation: true,
+    terms: 'By proceeding, you agree to our Terms and Privacy Policy.',
+    authWithEmail: 'Sign up with email',
   }); 
   return (
   <AuthForm text={text} />

@@ -9,7 +9,6 @@ import Image from "next/image";
 
 export default function AuthForm({ text }: { text: any}) {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login, error } = useAuth();
   const router = useRouter();
@@ -98,12 +97,24 @@ export default function AuthForm({ text }: { text: any}) {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-transparent border-gray-500 text-white placeholder:text-gray-500 focus:border-blue-500"
+                    className="w-full bg-transparent border-gray-500 placeholder:text-gray-500 focus:border-blue-500"
                     placeholder="you@example.com"
                     required
                   />
                 </div>
+                <button
+                  type="submit"
+                  className="mt-4 w-full h-10 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 border rounded-lg hover:border-[var(--primary)]"
+                  disabled={isLoading}
+                >
+                  <span>{text.authWithEmail}</span>
+                </button>
               </form>
+              <div className="flex flex-col gap-1 items-center text-center mb-4">
+                <p className="font-medium text-gray-500 mt-2">
+                  {text.terms}
+                </p>
+              </div>
             </div>
           </div>
         </div>
