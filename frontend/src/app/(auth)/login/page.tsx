@@ -10,7 +10,8 @@ export default function LoginPage() {
     authApple: 'Login with Apple',
     authFacebook: 'Login with Facebook',
     showEmailRecommendation: false,
-    terms: 'By proceeding, you agree to our Terms and Privacy Policy.'
+    terms: 'By proceeding, you agree to our Terms and Privacy Policy.',
+    authWithEmail: 'Login with email',
   }); 
   return (
   <AuthForm text={text} />
