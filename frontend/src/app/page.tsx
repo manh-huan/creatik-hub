@@ -2,8 +2,8 @@
 
 import { CategoryGrid } from "@/components/home/category-grid";
 import { HeroSection } from "@/components/home/hero-section";
-import Footer from "@/components/layout/footer";
-import { Navigation } from "@/components/layout/navigation";
+import Footer from "@/components/layout/Footer";
+import  Navigation  from "@/components/layout/Navigation";
 
 export default function HomePage() {
   return (
