@@ -9,7 +9,7 @@
 /*  Global Variables (VEED-style palette)                                     */
 /* -------------------------------------------------------------------------- */
 :root {
-  --color-bg: #f8f8fa;
+  --color-bg: #ebebf0;
   --color-surface: #ffffff;
   --color-text: #111111;
   --color-muted: #666666;
@@ -166,7 +166,7 @@ small {
 /*  Navbar + Footer                                                           */
 /* -------------------------------------------------------------------------- */
 .navbar {
-  @apply sticky top-0 z-50 w-full bg-white/80 backdrop-blur border-b border-[var(--color-border)];
+  @apply sticky top-0 z-50 w-full bg-white/60 backdrop-blur border rounded-3xl border-[var(--color-border)];
 }
 
 .nav-link {

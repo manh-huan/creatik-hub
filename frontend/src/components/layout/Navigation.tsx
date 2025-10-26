@@ -6,18 +6,18 @@ export function Navigation() {
       {/* Top Banner */}
       <div className="w-full bg-gradient-to-r from-[#9c6bff] to-[#7b61ff] text-white py-2 px-4 text-center text-sm">
         <span className="font-medium">🎉 Get 50% off your first month!</span>
-        <Link href="#" className="underline ml-2 hover:opacity-90">
+        <Link href="/signup" className="underline ml-2 hover:opacity-90">
           Claim Offer
         </Link>
       </div>
 
       {/* Main Navigation */}
-      <nav className="navbar sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+      <nav className="navbar">
+        <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4 ">
           {/* Logo */}
           <div className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#9c6bff] to-[#7b61ff]" />
-            <span className="text-lg font-bold">Faceless AI Video</span>
+            {/* <div className="h-7 w-7 rounded-md bg-gradient-to-br from-[#9c6bff] to-[#7b61ff]" /> */}
+            <span className="text-lg font-bold">Creatik-hub</span>
           </div>
 
           {/* Navigation Links */}
