@@ -4,12 +4,9 @@ import { Badge } from "../ui/badge"
 export function HeroSection() {
   return (
     <section className="relative bg-background py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-accent/5"></div>
-
       {/* Content */}
       <div className="relative max-w-7xl mx-auto text-center">
-        <Badge variant="secondary" className="mb-6 bg-secondary/20 text-secondary-foreground border-secondary/30">
+        <Badge variant="secondary" className="mb-6 bg-primary text-secondary-foreground border-secondary/30">
           ✨ AI-Powered Video Creation
         </Badge>
 
@@ -22,13 +19,13 @@ export function HeroSection() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-          <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 text-lg">
+          <Button size="lg" className="btn-primary">
             Start Creating Free
           </Button>
           <Button
             variant="outline"
             size="lg"
-            className="border-border text-foreground hover:bg-card px-8 py-3 text-lg bg-transparent"
+            className="btn-secondary"
           >
             Watch Demo
           </Button>

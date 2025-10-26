@@ -103,7 +103,7 @@ small {
   box-shadow: 0 8px 24px rgba(123, 97, 255, 0.25);
 }
 .btn-primary:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.2);
 }
 
 .btn-secondary {
