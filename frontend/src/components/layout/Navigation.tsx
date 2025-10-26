@@ -4,7 +4,7 @@ export function Navigation() {
   return (
     <>
       {/* Top Banner */}
-      <div className="w-full bg-gradient-to-r from-[#9c6bff] to-[#7b61ff] text-white py-2 px-4 text-center text-sm">
+      <div className="w-full bg-gradient-to-r from-[#9c6bff] to-[#7b61ff] text-white py-2 text-center text-sm">
         <span className="font-medium">🎉 Get 50% off your first month!</span>
         <Link href="/signup" className="underline ml-2 hover:opacity-90">
           Claim Offer

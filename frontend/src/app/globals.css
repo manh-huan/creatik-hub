@@ -98,7 +98,7 @@ small {
 /*  Buttons (primary, secondary, ghost)                                       */
 /* -------------------------------------------------------------------------- */
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white transition;
+  @apply inline-flex items-center justify-center cursor-pointer rounded-full px-6 py-3 font-semibold text-white transition;
   background: var(--color-gradient);
   box-shadow: 0 8px 24px rgba(123, 97, 255, 0.25);
 }
@@ -107,7 +107,7 @@ small {
 }
 
 .btn-secondary {
-  @apply inline-flex items-center justify-center rounded-full border px-6 py-3 font-semibold transition;
+  @apply cursor-pointer inline-flex items-center justify-center rounded-full border px-6 py-3 font-semibold transition;
   border-color: var(--color-border);
   background: var(--color-surface);
   color: var(--color-text);
@@ -117,7 +117,7 @@ small {
 }
 
 .btn-ghost {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3 font-medium transition;
+  @apply inline-flex items-center justify-center cursor-pointer rounded-full px-6 py-3 font-medium transition;
   background: transparent;
   color: var(--color-text);
 }
@@ -141,7 +141,7 @@ small {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .card:hover {
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
 }
 
@@ -194,3 +194,41 @@ small {
 .fade-in-up {
   animation: fadeInUp 0.5s ease both;
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Input field                                                               */
+/* -------------------------------------------------------------------------- */
+.input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.75rem;
+  background-color: #ffffff;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.input::placeholder {
+  color: #9ca3af; /* gray-400 */
+  opacity: 0.5;
+}
+
+.input:hover {
+  border-color: #cfcfe0;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(123, 97, 255, 0.2);
+}
+
+/* Optional smaller version */
+.input-sm {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+}
+
