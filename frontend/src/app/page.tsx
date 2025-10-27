@@ -1,13 +1,13 @@
 'use client';
 
-import { CategoryGrid } from "@/components/home/category-grid";
-import { HeroSection } from "@/components/home/hero-section";
-import Footer from "@/components/layout/Footer";
-import  Navigation  from "@/components/layout/Navigation";
+import { CategoryGrid } from '@/components/home/category-grid';
+import { HeroSection } from '@/components/home/hero-section';
+import Footer from '@/components/layout/Footer';
+import Navigation from '@/components/layout/Navigation';
 
 export default function HomePage() {
   return (
-   <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background">
       <Navigation />
       <main>
         <HeroSection />

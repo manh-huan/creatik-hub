@@ -8,21 +8,23 @@ export interface User {
   createdAt: string;
 }
 
-export interface AuthResponse {
-  user: User;
+export interface PasswordlessRequestResponse {
   message: string;
+  expiresIn?: number;
 }
 
-export interface RegisterData {
-  email: string;
-  firstName: string;
-  lastName: string;
-  password: string;
+export interface PasswordlessVerifyResponse {
+  message: string;
+  user: User;
+  isNewUser: boolean;
+}
+
+export interface CheckEmailResponse {
+  exists: boolean;
+  emailVerified: boolean;
 }
 
 export class AuthService {
- 
-
   static removeUser(): void {
     if (typeof window === 'undefined') return;
     localStorage.removeItem('user_data');
@@ -39,13 +41,38 @@ export class AuthService {
     return userData ? JSON.parse(userData) : null;
   }
 
-  static async register(email: string, firstName: string, lastName: string, password: string): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse>('/api/v1/auth/register', {
-      email,
-      firstName,
-      lastName,
-      password
-    });
+  // ============================================================================
+  // EMAIL CHECKING
+  // ============================================================================
+
+  /**
+   * Check if email exists in the system
+   */
+  static async checkEmailExists(email: string): Promise<CheckEmailResponse> {
+    const response = await apiClient.post<CheckEmailResponse>('/api/v1/auth/check-email', { email });
+    return response.data;
+  }
+
+  // ============================================================================
+  // PASSWORDLESS AUTHENTICATION (Magic Link)
+  // ============================================================================
+
+  /**
+   * Request magic link for passwordless login/signup
+   * The backend will automatically create an account if email doesn't exist
+   */
+  static async requestMagicLink(email: string): Promise<PasswordlessRequestResponse> {
+    const response = await apiClient.post<PasswordlessRequestResponse>('/api/v1/auth/passwordless/request', { email });
+
+    return response.data;
+  }
+
+  /**
+   * Verify magic link token
+   * Completes the login/signup process
+   */
+  static async verifyMagicLink(token: string): Promise<PasswordlessVerifyResponse> {
+    const response = await apiClient.post<PasswordlessVerifyResponse>('/api/v1/auth/passwordless/verify', { token });
 
     const { user } = response.data;
     this.setUser(user);
@@ -53,11 +80,26 @@ export class AuthService {
     return response.data;
   }
 
-  static async login(email: string, password: string): Promise<AuthResponse> {
-    const response = await apiClient.post<AuthResponse>('/api/v1/auth/login', {
-      email,
-      password
-    });
+  // ============================================================================
+  // PASSWORDLESS AUTHENTICATION (OTP)
+  // ============================================================================
+
+  /**
+   * Request OTP for passwordless login/signup
+   * The backend will automatically create an account if email doesn't exist
+   */
+  static async requestOTP(email: string): Promise<PasswordlessRequestResponse> {
+    const response = await apiClient.post<PasswordlessRequestResponse>('/api/v1/auth/passwordless/otp/request', { email });
+
+    return response.data;
+  }
+
+  /**
+   * Verify OTP code
+   * Completes the login/signup process
+   */
+  static async verifyOTP(email: string, otp: string): Promise<PasswordlessVerifyResponse> {
+    const response = await apiClient.post<PasswordlessVerifyResponse>('/api/v1/auth/passwordless/otp/verify', { email, otp });
 
     const { user } = response.data;
     this.setUser(user);

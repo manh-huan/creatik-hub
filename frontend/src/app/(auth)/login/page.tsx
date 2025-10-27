@@ -3,7 +3,7 @@ import AuthForm from '@/components/auth/auth-form';
 import React from 'react';
 
 export default function LoginPage() {
-  const [text] = React.useState({ 
+  const [text] = React.useState({
     heading: 'Welcome back',
     subHeading: 'Login to your account and start creating videos',
     authGoogle: 'Login with Google',
@@ -12,8 +12,6 @@ export default function LoginPage() {
     showEmailRecommendation: false,
     terms: 'By proceeding, you agree to our Terms and Privacy Policy.',
     authWithEmail: 'Login with email',
-  }); 
-  return (
-  <AuthForm text={text} />
-  );
+  });
+  return <AuthForm text={text} />;
 }

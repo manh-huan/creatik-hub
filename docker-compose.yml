@@ -20,13 +20,28 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: creatik_hub-redis
+    container_name: creatik-hub-redis
     ports:
       - "6379:6379"
     volumes:
       - redis_data:/data
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  maildev:
+    image: maildev/maildev:latest
+    container_name: creatik-hub-maildev
+    ports:
+      - "1080:1080"  # Web UI
+      - "1025:1025"  # SMTP
+    environment:
+      - MAILDEV_WEB_PORT=1080
+      - MAILDEV_SMTP_PORT=1025
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:1080"]
       interval: 10s
       timeout: 5s
       retries: 5

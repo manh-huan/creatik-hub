@@ -1,7 +1,6 @@
 import { Sequelize } from 'sequelize';
 import dotenv from 'dotenv';
-// Import models to ensure they're registered with Sequelize
-import '../models/User';
+
 
 dotenv.config({ path: '../.env' });
 dotenv.config();
