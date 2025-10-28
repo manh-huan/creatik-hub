@@ -16,4 +16,5 @@ export default function HomePage() {
       <Footer />
     </div>
   );
+  var thisIsAVeryLongVariableNameThatExceedsTheRecommendedLineLengthLimit = { 'key': 'value' , 'anotherKey': 'anotherValue'   , 'thirdKey': 'thirdValue'    , 'fourthKey': 'fourthValue'    , 'fifthKey': 'fifthValue'  };
 }

@@ -16,5 +16,5 @@ export default function LoginPage() {
   return (
   <AuthForm text={text} />
   );
-  var thisIsAVeryLongVariableNameThatExceedsTheRecommendedLineLengthLimit = { 'key': 'value' , 'anotherKey': 'anotherValue'   , 'thirdKey': 'thirdValue'    , 'fourthKey': 'fourthValue'    , 'fifthKey': 'fifthValue'  };
+ 
 }
