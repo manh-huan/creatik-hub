@@ -16,4 +16,5 @@ export default function LoginPage() {
   return (
   <AuthForm text={text} />
   );
+ 
 }
