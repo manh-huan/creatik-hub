@@ -45,10 +45,6 @@ export default function AuthForm({ text }: { text: any }) {
           // Email already exists - send OTP for login
           await requestOTP(email);
           setOtpSent(true);
-          setStatusMessage({
-            type: 'info',
-            text: `An account with ${email} already exists. We've sent you an OTP code to sign in.`,
-          });
         } else {
           // Email doesn't exist - create account and send magic link
           await requestMagicLink(email);
@@ -64,10 +60,6 @@ export default function AuthForm({ text }: { text: any }) {
           // Email exists - send OTP for login
           await requestOTP(email);
           setOtpSent(true);
-          setStatusMessage({
-            type: 'success',
-            text: `We've sent a 6-digit OTP code to ${email}. Enter it below to sign in.`,
-          });
         } else {
           // Email doesn't exist - send magic link to create account
           await requestMagicLink(email);
@@ -97,7 +89,7 @@ export default function AuthForm({ text }: { text: any }) {
 
   return (
     <div className="sm:flex sm:justify-center overflow-y-hidden">
-      <div className="rounded-2xl flex flex-col overflow-hidden sm:w-[400px]">
+      <div className="rounded-2xl absolute top-1/2 -translate-y-1/2 flex flex-col overflow-hidden sm:w-[400px]">
         <div className="card">
           <div className="flex flex-col gap-1 items-center text-center mb-4">
             <h1 className="text-lg text-gray-900 mb-2">{text.heading}</h1>
@@ -162,9 +154,9 @@ export default function AuthForm({ text }: { text: any }) {
           {!otpSent && !magicLinkSent && (
             <form onSubmit={handleSubmit} className="mt-4 flex flex-col w-full">
               <div className="flex w-full">
-                <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full bg-transparent border-gray-500 placeholder:text-gray-400 focus:border-blue-500" placeholder="Ex: creatikhub@gmail.com" required />
+                <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="input h-12 placeholder:text-gray-400" placeholder="Ex: creatikhub@gmail.com" required />
               </div>
-              <button type="submit" className="cursor-pointer mt-4 w-full h-10 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 border hover:border-[var(--primary)]" disabled={isLoading}>
+              <button type="submit" className="btn-primary mt-4 py-2 px-4 " disabled={isLoading}>
                 <span>{isLoading ? 'Checking...' : isSignUpForm ? 'Sign Up' : 'Sign In'}</span>
               </button>
               {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
@@ -174,7 +166,7 @@ export default function AuthForm({ text }: { text: any }) {
           {/* Magic Link Sent Message */}
           {magicLinkSent && (
             <div className="mt-4">
-              <button type="button" onClick={handleReset} className="w-full text-blue-600 text-sm hover:underline mt-3">
+              <button type="button" onClick={handleReset} className="btn-primary">
                 Try another email
               </button>
             </div>
