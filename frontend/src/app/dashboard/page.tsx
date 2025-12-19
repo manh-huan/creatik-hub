@@ -1,5 +1,7 @@
 'use client';
 
+import Navigation from '@/components/layout/Navigation';
+import { Button } from '@/components/ui/button';
 import { useAuth } from '@/hooks/auth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
@@ -27,66 +29,37 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <nav className="bg-white shadow">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <h1 className="text-xl font-semibold">Text-to-Video Dashboard</h1>∏
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Welcome, {user?.email}!</span>
-              <button
-                onClick={logout}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
-              >
-                Logout
-              </button>
-            </div>
+    <div className="min-h-screen bg-gradient-to-b from-white to-pink-50/20">
+      <div className="flex h-100dvh w-100dvh flex-col flex-nowrap">
+        <header className="flex-1 sticky py-4 rounded-2xl">
+          <Navigation isAuthenticated={isAuthenticated} />
+        </header>
+        <div className="flex-1 bg-transparent border-transparent h-fit rounded-[32px] justify-items-center m-4">
+          <div className="flex w-fit m-12 items-center justify-items-center text-center">
+            <span className="text-2xl font-semibold">Your personal Creative Studio</span>
+            <span className="ml-2 text-4xl animate-pulse">🎬</span>
+            <span className="ml-2 text-2xl font-semibold">is waiting for you!</span>
           </div>
-        </div>
-      </nav>
-
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-        <div className="px-4 py-6 sm:px-0">
-          <div className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="px-4 py-5 sm:p-6">
-              <h3 className="text-lg leading-6 font-medium text-gray-900 mb-4">
-                Your Account
-              </h3>
-              <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Name</dt>
-                  {/* For now, we dont have user names, so just show email */}
-                  <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd> 
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Email</dt>
-                  <dd className="mt-1 text-sm text-gray-900">{user?.email}</dd>
-                </div>
-                <div>
-                  <dt className="text-sm font-medium text-gray-500">Member since</dt>
-                  <dd className="mt-1 text-sm text-gray-900">
-                    {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
-                  </dd>
-                </div>
-              </dl>
-              
-              <div className="mt-8 p-4 bg-blue-50 rounded-lg">
-                <h4 className="text-lg font-medium text-blue-900">🎉 Authentication Complete!</h4>
-                <p className="mt-2 text-blue-700">
-                  Great! Your authentication system is now working. Next steps:
-                </p>
-                <ul className="mt-2 text-sm text-blue-600 list-disc list-inside">
-                  <li>Add AI API integration for video generation</li>
-                  <li>Set up file storage for videos</li>
-                  <li>Create video generation interface</li>
-                </ul>
+          <div className="border-transparent h-[20.75rem] w-3/4 border m-4 rounded-2xl justify-items-center">
+            <div className="flex flex-col h-fit items-center justify-center p-4">
+              <span className="text-2xl font-semibold text-gray-800 mb-4">AI-generated content and UGC-style creators to educate, promote, and sell.</span>
+            </div>
+            <div className="border-4 bg-transparent flex h-[13rem] w-3/4 rounded-2xl bg-white m-3 justify-items-center items-center">
+              <textarea id="prompts-textarea" className="outline-none h-full w-full m-6" placeholder="Type in your idea or paste your script here..."></textarea>
+              <div className="flex h-3/4 w-fit items-center justify-centerp-4 mr-2">
+                <Button size="lg" className="btn-vertical mr-8" variant="secondary">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                    <path
+                      fill="#B197FC"
+                      d="M128 128C92.7 128 64 156.7 64 192L64 448C64 483.3 92.7 512 128 512L384 512C419.3 512 448 483.3 448 448L448 192C448 156.7 419.3 128 384 128L128 128zM496 400L569.5 458.8C573.7 462.2 578.9 464 584.3 464C597.4 464 608 453.4 608 440.3L608 199.7C608 186.6 597.4 176 584.3 176C578.9 176 573.7 177.8 569.5 181.2L496 240L496 400z"
+                    />
+                  </svg>
+                </Button>
               </div>
             </div>
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

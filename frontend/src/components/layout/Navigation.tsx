@@ -1,15 +1,21 @@
-import Link from "next/link";
+import Link from 'next/link';
 
-export default function Navigation() {
+type NavigationProps = {
+  isAuthenticated: boolean;
+};
+
+export default function Navigation({ isAuthenticated }: NavigationProps) {
   return (
     <>
       {/* Top Banner */}
-      <div className="w-full bg-gradient-to-r from-[#9c6bff] to-[#7b61ff] text-white py-2 text-center text-sm">
-        <span className="font-medium">🎉 Get 50% off your first month!</span>
-        <Link href="/signup" className="underline ml-2 hover:opacity-90">
-          Claim Offer
-        </Link>
-      </div>
+      {!isAuthenticated && (
+        <div className="w-full bg-gradient-to-r from-[#9c6bff] to-[#7b61ff] text-white py-2 text-center text-sm">
+          <span className="font-medium">🎉 Get 50% off your first month!</span>
+          <Link href="/signup" className="underline ml-2 hover:opacity-90">
+            Claim Offer
+          </Link>
+        </div>
+      )}
 
       {/* Main Navigation */}
       <nav className="navbar">
@@ -34,16 +40,25 @@ export default function Navigation() {
             <Link href="#resources" className="nav-link">
               Resources
             </Link>
-            <Link href="/login" className="nav-link">
-              Login
-            </Link>
+
+            {!isAuthenticated && (
+              <Link href="/login" className="nav-link">
+                Login
+              </Link>
+            )}
           </div>
 
-          {/* CTA Button */}
+          {/* Right CTA */}
           <div className="flex items-center">
-            <Link href="/signup" className="btn-primary">
-              Get Started
-            </Link>
+            {isAuthenticated ? (
+              <Link href="/dashboard" className="btn-primary">
+                Dashboard
+              </Link>
+            ) : (
+              <Link href="/signup" className="btn-primary">
+                Get Started
+              </Link>
+            )}
           </div>
         </div>
       </nav>
